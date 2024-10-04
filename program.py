@@ -30,61 +30,63 @@ while loop:
             #Player move
             playerChoice = str(input("Choose Rock (R), Paper (P), or Scissors (S): ")).lower()
        
-            if playerChoice != "r" or playerChoice != "p" or playerChoice != "s":
-                print("Not sure what you mean. Try again...\n")
-
             #Computer move
             moves = ("Rock", "Paper", "Scissors")
-            computerChoice = str(random.choice(moves)).lower()
-            print("Computer: " + computerChoice)
+            computerChoice = str(random.choice(moves)).lower()    
+            if playerChoice == "r" or playerChoice == "p" or playerChoice == "s" or playerChoice == "rock" or playerChoice == "paper" or playerChoice == "scissors":
+                print("Computer: " + computerChoice)
 
-            #Winner
-
-            #Player win Outcomes
-            if playerChoice == "r" and computerChoice == "scissors":
+            #Player win outcomes
+            if (playerChoice == "r" or playerChoice == "rock")  and computerChoice == "scissors":
                 scoreCounterPlayer += 1
                 print("You win!" + " Score now: " + str(scoreCounterPlayer) + ":" + str(scoreCounterComputer) + "\n")
 
-            elif playerChoice == "p" and computerChoice == "rock":
+            elif (playerChoice == "p" or playerChoice == "paper") and computerChoice == "rock":
                 scoreCounterPlayer += 1
                 print("You win!" + " Score now: " + str(scoreCounterPlayer) + ":" + str(scoreCounterComputer) + "\n")
 
-            elif playerChoice == "s" and computerChoice == "paper":
+            elif (playerChoice == "s" or playerChoice == "scissors") and computerChoice == "paper":
                 scoreCounterPlayer += 1
                 print("You win!" + " Score now: " + str(scoreCounterPlayer) + ":" + str(scoreCounterComputer) + "\n")
 
             #Computer win outcomes
-            elif computerChoice == "rock" and playerChoice == "s":
+            elif computerChoice == "rock" and (playerChoice == "s" or playerChoice == "scissors"):
                 scoreCounterComputer += 1
                 print("I win!" + " Score now: " + str(scoreCounterPlayer) + ":" + str(scoreCounterComputer) + "\n")
 
-            elif computerChoice == "paper" and playerChoice == "r":
+            elif computerChoice == "paper" and (playerChoice == "r" or playerChoice == "rock"):
                 scoreCounterComputer += 1
                 print("I win!" + " Score now: " + str(scoreCounterPlayer) + ":" + str(scoreCounterComputer) + "\n")
 
-            elif computerChoice == "scissors" and playerChoice == "p":
+            elif computerChoice == "scissors" and (playerChoice == "p" or playerChoice == "paper"):
                 scoreCounterComputer += 1
                 print("I win!" + " Score now: " + str(scoreCounterPlayer) + ":" + str(scoreCounterComputer) + "\n")
+            
+            #Invalid Input
+            elif playerChoice != "r" and playerChoice != "p" and playerChoice != "s":
+                print("Not sure what you mean. Try again...\n")
+            
             #Tie outcome  
             else: 
                 print("Tie! Try again...\n")
 
-            #Invalid Input 
-
-                #print("Not sure what you mean. Try again...")
-        #End of for loop
-
-    #Win scenarios 
+    #Match scenarios 
     if scoreCounterPlayer > scoreCounterComputer:
-        choice = input("You win the match! Do you want to play another match?(Y/N) ").lower()
-    elif scoreCounterPlayer < scoreCounterComputer:
-        choice = input("I win the match! Do you want to play another match?(Y/N) ").lower()
-    else:
-        choice = input("It's a tie! Do you want to play another match?(Y/N) ").lower()
+        userChoice = input("You win the match! Do you want to play another match?(Y/N) ").lower()
 
-    if choice == "y":
+    elif scoreCounterPlayer < scoreCounterComputer:
+        userChoice = input("I win the match! Do you want to play another match?(Y/N) ").lower()
+
+    else:
+        userChoice = input("It's a tie! Do you want to play another match?(Y/N) ").lower()
+
+    #If the user does wish to continue
+    if userChoice == "y":
         loop = True
+
+    #If the user does not wish to continue    
     else: 
+        loop = False
         print("\nThanks for playing! Bye for now!")
-        break
+        
 
